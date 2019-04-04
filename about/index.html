@@ -104,17 +104,17 @@
 
 
 
-  <meta name="description" content="Fight for Yourself!">
+  <meta name="description" content="$\quad\quad$欢迎大家来到我的博客，我是来自广东广州的MoNan，2016年开始学习信息学竞赛（时年初一）。 $\quad\quad​$现在搭建了一个比较方便的博客，会写一写题解、算法总结、游记、感悟等等，其中注重技巧性的东西，基础可能会比较少总结，而且一般不会涉及普及或以下的内容。 $\quad\quad$而且之前的博客也是有一些比较珍贵的回忆，它现在放在友情链接的第一项。也请全国众多">
 <meta property="og:type" content="website">
 <meta property="og:title" content="关于">
 <meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="MN2016 &#39;s blog">
-<meta property="og:description" content="Fight for Yourself!">
+<meta property="og:description" content="$\quad\quad$欢迎大家来到我的博客，我是来自广东广州的MoNan，2016年开始学习信息学竞赛（时年初一）。 $\quad\quad​$现在搭建了一个比较方便的博客，会写一写题解、算法总结、游记、感悟等等，其中注重技巧性的东西，基础可能会比较少总结，而且一般不会涉及普及或以下的内容。 $\quad\quad$而且之前的博客也是有一些比较珍贵的回忆，它现在放在友情链接的第一项。也请全国众多">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-03T10:55:35.281Z">
+<meta property="og:updated_time" content="2019-04-04T05:08:35.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于">
-<meta name="twitter:description" content="Fight for Yourself!">
+<meta name="twitter:description" content="$\quad\quad$欢迎大家来到我的博客，我是来自广东广州的MoNan，2016年开始学习信息学竞赛（时年初一）。 $\quad\quad​$现在搭建了一个比较方便的博客，会写一写题解、算法总结、游记、感悟等等，其中注重技巧性的东西，基础可能会比较少总结，而且一般不会涉及普及或以下的内容。 $\quad\quad$而且之前的博客也是有一些比较珍贵的回忆，它现在放在友情链接的第一项。也请全国众多">
 
 
 
@@ -414,7 +414,11 @@
       <div class="post-body han-init-context">
         
         
-          
+          <p>$\quad\quad$欢迎大家来到我的博客，我是来自广东广州的MoNan，2016年开始学习信息学竞赛（时年初一）。</p>
+<p>$\quad\quad​$现在搭建了一个比较方便的博客，会写一写题解、算法总结、游记、感悟等等，其中注重技巧性的东西，基础可能会比较少总结，而且一般不会涉及普及或以下的内容。</p>
+<p>$\quad\quad$而且之前的博客也是有一些比较珍贵的回忆，它现在放在友情链接的第一项。也请全国众多大佬一起互换友链。</p>
+<p>$\quad\quad$希望与大家一起进步，一起加油！</p>
+
         
       </div>
       
@@ -433,6 +437,14 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display: none"></div>
+      
+    </div>
 
   
 
@@ -472,7 +484,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -790,6 +802,44 @@
 
   
 
+
+  
+    <!-- LOCAL: You can save these files to your site and update links -->
+
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitmint.browser.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
+<!-- END LOCAL -->
+
+<script>
+  function renderGitment() {
+    var gitment = new Gitmint({
+      id: window.location.pathname,
+      owner: 'MoNan2016',
+      repo: 'monan2016.github.io',
+      
+        lang: '' || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+      
+      oauth: {
+      
+      
+        client_secret: 'f2ba7de6b15f0cac59f3c8ef796eaa09cb080d99',
+      
+        client_id: '8529029f7f22e3993c7e'
+      }
+    });
+    gitment.render('gitment-container');
+  }
+
+  
+    function showGitment() {
+      document.getElementById('gitment-display-button').style.display = 'none';
+      document.getElementById('gitment-container').style.display = 'block';
+      renderGitment();
+    }
+  
+</script>
 
   
 

@@ -154,7 +154,7 @@ template {
 body {
   position: relative;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 2;
   color: #555;
   background: #eee;
@@ -166,7 +166,7 @@ body {
 }
 @media (min-width: 1200px) {
   body {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 h1,
@@ -182,84 +182,84 @@ h6 {
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 h1 {
-  font-size: 22px;
+  font-size: 26px;
 }
 h1 code {
   font-size: 1em;
 }
 @media (max-width: 767px) {
   h1 {
-    font-size: 18px;
+    font-size: 22px;
   }
   h1 code {
     font-size: 1em;
   }
 }
 h2 {
-  font-size: 20px;
+  font-size: 24px;
 }
 h2 code {
   font-size: 1em;
 }
 @media (max-width: 767px) {
   h2 {
-    font-size: 16px;
+    font-size: 20px;
   }
   h2 code {
     font-size: 1em;
   }
 }
 h3 {
-  font-size: 18px;
+  font-size: 22px;
 }
 h3 code {
   font-size: 1em;
 }
 @media (max-width: 767px) {
   h3 {
-    font-size: 14px;
+    font-size: 18px;
   }
   h3 code {
     font-size: 1em;
   }
 }
 h4 {
-  font-size: 16px;
+  font-size: 20px;
 }
 h4 code {
   font-size: 1em;
 }
 @media (max-width: 767px) {
   h4 {
-    font-size: 12px;
+    font-size: 16px;
   }
   h4 code {
     font-size: 1em;
   }
 }
 h5 {
-  font-size: 14px;
+  font-size: 18px;
 }
 h5 code {
   font-size: 1em;
 }
 @media (max-width: 767px) {
   h5 {
-    font-size: 10px;
+    font-size: 14px;
   }
   h5 code {
     font-size: 1em;
   }
 }
 h6 {
-  font-size: 12px;
+  font-size: 16px;
 }
 h6 code {
   font-size: 1em;
 }
 @media (max-width: 767px) {
   h6 {
-    font-size: 8px;
+    font-size: 12px;
   }
   h6 code {
     font-size: 1em;
@@ -1228,7 +1228,7 @@ pre .javascript .function {
 .post-body .figure .caption {
   margin: -20px auto 15px;
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
   color: #999;
   font-weight: bold;
   line-height: 1;
@@ -1807,7 +1807,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #53a6eb;
+  background: #c15bb0;
 }
 .feed-link,
 .chat {
@@ -2058,6 +2058,26 @@ pre .javascript .function {
   50%, 70% {
     transform: scale(1.1);
   }
+}
+#gitment-display-button {
+  display: inline-block;
+  padding: 0 15px;
+  color: #0a9caf;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid #0a9caf;
+  border-radius: 4px;
+}
+#gitment-display-button:hover {
+  color: #fff;
+  background: #0a9caf;
+}
+#gitment-container a {
+  border-bottom: none;
+}
+a.gitment-editor-footer-tip,
+.gitment-container.gitment-footer-container {
+  display: none;
 }
 i.fa {
   font-family: FontAwesome !important;
@@ -2437,7 +2457,7 @@ ul.breadcrumb {
   margin: 1em 0;
   padding: 0 2em;
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
 }
 ul.breadcrumb li {
   display: inline;

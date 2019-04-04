@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[test]]></title>
+    <url>%2F2019%2F04%2F04%2Ftest%2F</url>
+    <content type="text"><![CDATA[阿道夫啊mioaruiaer l是 阿萨德ioasjio 三打两建ioasgs 123456789101112131415&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;https://imsun.github.io/gitment/style/default.css&quot;&gt;&lt;script src=&quot;https://imsun.github.io/gitment/dist/gitment.browser.js&quot;&gt;&lt;/script&gt;&lt;script&gt;var gitment = new Gitment(&#123; id: window.location.pathname, owner: &apos;MoNan2016&apos;, repo: &apos;monan2016.github.io&apos;, oauth: &#123; client_id: &apos;8529029f7f22e3993c7e&apos;, client_secret: &apos;f2ba7de6b15f0cac59f3c8ef796eaa09cb080d99&apos;, &#125;,&#125;)gitment.render(&apos;container&apos;)&lt;/script&gt;]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[矩阵乘法优化DP的技巧]]></title>
     <url>%2F2019%2F04%2F03%2F%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E4%BC%98%E5%8C%96DP%E7%9A%84%E6%8A%80%E5%B7%A7%2F</url>
     <content type="text"><![CDATA[本文讲一下一些基本的矩阵优化DP的方法技巧。 定义三个矩阵A,B,C,其中行和列分别为$m\times n,n \times p,m\times p$，（其中行是从上往下数的，列是从左往右数的） $C_{i,j}=\sum_{k=1}^{n}A_{i,k}\times B_{k,j}$ 矩阵乘法具有结合律，但没有交换律，可以乘方、求逆。 做矩阵优化DP的题目步骤： $1\quad$把$DP$方程推出来（假如不能手推，可以先打$10$项左右的表，然后再写一个程序找每一项的系数，一般不会超过$5$项，否则矩阵太大了） $2\quad$打横把系数写出来（注意$i-1$先写，接下来是$i-2$，以此类推，没有的项补$0$） $3\quad$把矩阵补成项数$\times $项数，下面从第一个位置开始，对角线上写$1$（第一行忽略，其他写$0$） $4\quad$把初始矩阵按下标从大到小写出来，一定要打竖 $5\quad$把题目要求的第$n$项的先减去矩阵的边长，然后进行快速幂，最后初始矩阵的第一个数就是答案 其实大家可以用横着写初始矩阵，竖着写系数的方法理解，但是为了减少常数，我们不可能两个矩阵开到一样大，所以我们适应计算机的理解，竖着写更方便，而且基本正确。 还可以用判断是否为$0$、改变转移顺序、人工$mod$的速度来卡常数。 对于一些不止一维的题目，可以把后面几维顺着写下去（像二维并查集一样），有常数项的可以写到矩阵里面去。 理论时间复杂度：$O(\log_{2}({p^{2}\times n}))$其中$n$是要求的第n项答案，$p​$是矩阵的大小。]]></content>
