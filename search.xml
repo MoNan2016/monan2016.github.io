@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【LZOJ3071】后缀数组/后缀树2]]></title>
+    <url>%2F2019%2F04%2F12%2F%E3%80%90LZOJ3071%E3%80%91%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84-%E5%90%8E%E7%BC%80%E6%A0%912%2F</url>
+    <content type="text"><![CDATA[题解知识点：后缀数组，最长公共前缀 分析：这道题是一道lcp的入门题，主要是先求出SA，然后通过SA线性求出Height，最后预处理出ST表，然后每次访问的时候调用即可。细节较多，在代码中讲解。 时间复杂度： 求SA：$O(n\log_{2}n)$ 求Height：$O(n)$ st表的预处理：$O(n\log_{2}n)$ 单次回答：$O(1)$ 总计：$O(n\log_{2}n)$ 代码： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;cmath&gt;#include&lt;iostream&gt;using namespace std; const int maxn=100010;int n,m=122,q,sa[maxn],rnk[maxn],height[maxn],y[maxn],c[maxn],f[maxn][30],val[maxn];//f数组是st表，开到2的30次方已足够，val是预处理的log值，可以加快运算char s[maxn]; void sort()&#123; int i; memset(c,0,sizeof(c)); for (i=1;i&lt;=n;i++) c[rnk[i]]++; for (i=2;i&lt;=m;i++) c[i]+=c[i-1]; for (i=n;i&gt;=1;i--) sa[c[rnk[y[i]]]--]=y[i];&#125; void getsa()&#123; int p=0,i,k; for (i=1;i&lt;=n;i++) &#123; rnk[i]=s[i]-96;//注意rnk一定要为正整数，否则会re、wa y[i]=i; &#125; sort(); for (k=1;p&lt;n;m=p,k&lt;&lt;=1) &#123; p=0; for (i=n-k+1;i&lt;=n;i++) y[++p]=i; for (i=1;i&lt;=n;i++) if (sa[i]&gt;k) y[++p]=sa[i]-k; sort(); swap(rnk,y); rnk[sa[1]]=p=1; for (i=2;i&lt;=n;i++) rnk[sa[i]]=(y[sa[i]]==y[sa[i-1]]&amp;&amp;y[sa[i]+k]==y[sa[i-1]+k])?p:++p; &#125;&#125; void getheight()&#123; int i,j,k=0;/* for (i=1;i&lt;=n;i++) rnk[sa[i]]=i;*/ for (i=1;i&lt;=n;i++) &#123; if (k) k--; j=sa[rnk[i]-1]; while (s[j+k]==s[i+k]) k++; height[rnk[i]]=k; &#125;&#125; void init()&#123; int i,j; memset(f,0x3f,sizeof(f));//因为求min，所以要初始一个INF for (i=1;i&lt;=n;i++) f[i][0]=height[i]; for (j=1;j&lt;=val[n];j++)//先枚举幂，再枚举位置 for (i=1;i+(1&lt;&lt;j)-1&lt;=n;i++) f[i][j]=min(f[i][j-1],f[i+(1&lt;&lt;j-1)][j-1]);//注意是j-1而不是j&#125; int st(int l,int r)&#123; int k=val[r-l+1]; return min(f[l][k],f[r-(1&lt;&lt;k)+1][k]);//一定要+1&#125; int main()&#123; int i,j,k; scanf("%s",s+1); n=strlen(s+1); for (i=2;i&lt;=n;i++)//要从2开始算 val[i]=val[i&gt;&gt;1]+1; getsa(); getheight(); scanf("%d",&amp;q); init(); while (q--) &#123; scanf("%d%d",&amp;i,&amp;j); if (rnk[i]&gt;rnk[j])//如果排名是错的，那么先换位置 swap(i,j); if (i==j) printf("%d\n",n-i+1); //一样就不用算了 else printf("%d\n",st(rnk[i]+1,rnk[j]));//height[rnk[i]]表示的是rnk[i]与rnk[i]-1的LCP，不是计算的范围 &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题目总结</category>
+        <category>LZOJ</category>
+      </categories>
+      <tags>
+        <tag>后缀数组</tag>
+        <tag>SA</tag>
+        <tag>LCP</tag>
+        <tag>ST表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2019年4月至5月停课·OI学习安排（一）]]></title>
     <url>%2F2019%2F04%2F10%2F2019%E5%B9%B44%E6%9C%88%E8%87%B35%E6%9C%88%E5%81%9C%E8%AF%BE%C2%B7OI%E5%AD%A6%E4%B9%A0%E5%AE%89%E6%8E%92%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
     <content type="text"><![CDATA[说明现在不是为了准备比赛，只是为了学习更多的知识，为以后做好准备。我认为应该复习与学习相结合，学习一些省选必备知识点，练习各类的题目，力求一次学会。 学过的内容会复习一下，没有学过的就要把它学会。 这里先定了3周的内容，剩余的时间待安排。“week”按照停课开始的时间算，5个工作日左右为一周。 其中序号前有“-”的表示复习内容，有“*​”的表示选学内容（有时间就学，没时间可以先跳过），有“^”的表示重点，一定要掌握熟悉（至少做5道非模板题，宁愿一次过把内容学精，也不要后面准备比赛的时候再来着急）。 Week 1：字符串^1 后缀数组（SA）及其性质（学会利用SA与height的性质解决各类问题） ^2 后缀树与后缀自动机（SAM）（巧用树的性质来解决区间字符串问题） 3 回文算法（manacher）及回文自动机，回文树 -4 KMP及AC自动机 *5 Border的性质与周期 Week 2：数学^1 莫比乌斯函数与莫比乌斯反演（学会推式子） -2 线性筛 3 杜教筛（学会筛出μ和φ的前缀和） *4 洲阁筛 *5 Min_25筛 -6 欧拉函数 -7 费马小定理与欧拉定理 8 容斥原理 9 Lucas定理与扩展Lucas定理 ^10 和式与积式的推导与化简（用于优化顺序，降低常数等，可以应用于各类的题目） Week 3：数据结构^1 线段树（一定要学会线段树的各类高级操作，如合并分裂、二分、可持久化等，而且可以维护各种问题） *2 替罪羊树（一定要掌握思想，可以不打代码） -3 Treap（提升熟练度，最好做到15分钟内写完模板，而且习惯写指针版的平衡树） -4 Splay（提升熟练度，特别是区间翻转的部分） *5 树套树 6 Link-Cut-Tree -7 树链剖分（学一类长链剖分的题） *8 点分治 2019年4月10日星期三 上午9时整]]></content>
