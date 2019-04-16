@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【BZOJ4034】【HAOI2015】树上操作]]></title>
+    <url>%2F2019%2F04%2F16%2F%E3%80%90BZOJ4034%E3%80%91%E3%80%90HAOI2015%E3%80%91%E6%A0%91%E4%B8%8A%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[题解知识点：树链剖分，线段树 分析：这是一道非常简单的树剖模板（真正有难度的模板是LOJ上那道题）。其实操作一和二可以合并成同一个操作（都是区间加），然后对链的情况进行查找，就结束了。 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175#include&lt;cstdio&gt;using namespace std;const int maxn=100010;typedef long long ll;int n,m,tot,head[maxn],fa[maxn],dep[maxn],siz[maxn],son[maxn],id[maxn],top[maxn],cnt;ll a[maxn],key[maxn],ans;struct node&#123; int nxt,to;&#125;edge[maxn&lt;&lt;1];struct data&#123; ll val,tag;&#125;t[maxn&lt;&lt;2];#define ls (o&lt;&lt;1)#define rs (o&lt;&lt;1|1)#define mid (l+r&gt;&gt;1)#define isdigit(c) (c&gt;=48&amp;&amp;c&lt;=57)#define swap(a,b) (a^=b^=a^=b)int read()&#123; int x=0,f=1; char c=getchar(); while (!isdigit(c)) f=c=='-'?-1:1,c=getchar(); while (isdigit(c)) x=(x&lt;&lt;1)+(x&lt;&lt;3)+(c^48),c=getchar(); return x*f;&#125;void dfs1(int u,int fat)&#123; dep[u]=dep[fat]+1; fa[u]=fat; siz[u]=1; int i,v; for (i=head[u];i;i=edge[i].nxt) &#123; v=edge[i].to; if (v==fat) continue; dfs1(v,u); siz[u]+=siz[v];//一开始漏写了这行导致找不出哪里错 if (siz[v]&gt;siz[son[u]]) son[u]=v; &#125;&#125;void dfs2(int u,int tp)&#123; top[u]=tp; id[u]=++cnt; key[cnt]=a[u]; if (!son[u]) return; dfs2(son[u],tp); int i,v; for (i=head[u];i;i=edge[i].nxt) &#123; v=edge[i].to; if (v==fa[u]||v==son[u]) continue; dfs2(v,v); &#125;&#125;void pushdown(int o,int l,int r)&#123; if (t[o].tag) &#123; t[ls].tag+=t[o].tag; t[rs].tag+=t[o].tag; t[ls].val+=(mid-l+1)*t[o].tag; t[rs].val+=(r-mid)*t[o].tag; t[o].tag=0; &#125;&#125;void build(int o,int l,int r)&#123; if (l==r) &#123; t[o].val=key[l]; return; &#125; build(ls,l,mid); build(rs,mid+1,r); t[o].val=t[ls].val+t[rs].val;&#125;void update(int o,int l,int r,int x,int y,ll val)&#123; if (l&gt;y||r&lt;x) return; if (x&lt;=l&amp;&amp;r&lt;=y) &#123; t[o].val+=(r-l+1)*val; t[o].tag+=val; return; &#125; pushdown(o,l,r); update(ls,l,mid,x,y,val); update(rs,mid+1,r,x,y,val); t[o].val=t[ls].val+t[rs].val;&#125;ll query(int o,int l,int r,int x,int y)&#123; if (l&gt;y||r&lt;x) return 0; if (x&lt;=l&amp;&amp;r&lt;=y) return t[o].val; pushdown(o,l,r); return query(ls,l,mid,x,y)+query(rs,mid+1,r,x,y);&#125;void add(int u,int v)&#123; edge[++tot]=(node)&#123;head[u],v&#125;; head[u]=tot;&#125;int main()&#123; int i,j,u,v; n=read(); m=read(); for (i=1;i&lt;=n;i++) a[i]=read(); for (i=1;i&lt;=n-1;i++) &#123; u=read(); v=read(); add(u,v); add(v,u); &#125; dfs1(1,0); dfs2(1,1); build(1,1,n); while (m--) &#123; i=read(); u=read(); if (i==1) &#123; v=read(); update(1,1,n,id[u],id[u],v+0ll); &#125; else if (i==2) &#123; v=read(); update(1,1,n,id[u],id[u]+siz[u]-1,v+0ll); &#125; else &#123; v=1; ans=0; while (top[u]!=top[v]) &#123; if (dep[top[u]]&lt;dep[top[v]]) swap(u,v); ans+=query(1,1,n,id[top[u]],id[u]); u=fa[top[u]]; &#125; if (dep[u]&gt;dep[v]) swap(u,v); ans+=query(1,1,n,id[u],id[v]); printf("%lld\n",ans); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题目总结</category>
+        <category>BZOJ</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+        <tag>树链剖分</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【BZOJ1968】【AHOI2005】COMMON约数研究]]></title>
     <url>%2F2019%2F04%2F15%2F%E3%80%90BZOJ1968%E3%80%91%E3%80%90AHOI2005%E3%80%91COMMON%E7%BA%A6%E6%95%B0%E7%A0%94%E7%A9%B6%2F</url>
     <content type="text"><![CDATA[题解知识点：数学，线性筛，约数个数定理 分析：由正整数唯一分解定理 $N=\displaystyle\prod_{i=1}^{k}{p_{i}^{r_i}}$可以知道，所有的质因子及其次数都是确定的。 又有约数个数定理：$d(n)=\displaystyle\prod_{i=1}^{k}1+r_i$ 所以只要套用模板就可以解决问题了。 代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445#include&lt;cstdio&gt;#include&lt;cstring&gt;using namespace std;const int maxn=1000010;int n,m,pr[maxn],num[maxn],d[maxn];long long ans;bool v[maxn];int main()&#123; int i,j; scanf("%d",&amp;n); v[1]=0; num[1]=1; d[1]=1; for (i=2;i&lt;=n;i++) &#123; if (!v[i]) &#123; pr[++m]=i; d[i]=2; num[i]=1; &#125; for (j=1;j&lt;=m&amp;&amp;pr[j]*i&lt;=n;j++) &#123; v[i*pr[j]]=1; if (i%pr[j]==0) &#123; d[i*pr[j]]=d[i]/(num[i]+1)*(num[i]+2); num[i*pr[j]]=num[i]+1; break; &#125; else &#123; d[i*pr[j]]=d[i]*2;//d[i*pr[j]]=d[i]*d[pr[j]]; num[i*pr[j]]=1; &#125; &#125; &#125; for (i=1;i&lt;=n;i++) ans+=d[i]+0ll; printf("%lld\n",ans); return 0;&#125; 先留一个坑，要写线性筛五连（素数，约数个数，约数和，欧拉函数，莫比乌斯函数）的总结。]]></content>
@@ -36,8 +50,8 @@
         <category>BZOJ</category>
       </categories>
       <tags>
-        <tag>树形DP</tag>
         <tag>DP</tag>
+        <tag>树形DP</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
