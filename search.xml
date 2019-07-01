@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[全力备战NOIP2019]]></title>
+    <url>%2F2019%2F07%2F01%2F%E5%85%A8%E5%8A%9B%E5%A4%87%E6%88%98NOIP2019%2F</url>
+    <content type="text"><![CDATA[NOIP2019还有130天，全力备战！ 加油！！！ 冲刺500+！！！]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[【洛谷P1045】麦森数]]></title>
+    <url>%2F2019%2F07%2F01%2F%E3%80%90%E6%B4%9B%E8%B0%B7P1045%E3%80%91%E9%BA%A6%E6%A3%AE%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[https://www.luogu.org/problemnew/show/P1045 题面就不贴了，地址如上。 本题有两个很妙的地方： 一，用log算位数： $\because 10^n 的位数是n+1$ $\therefore 我们想办法把 2^p-1转化为10^n的形式$，其中$2^p与2^p-1的位数相同（很显然），所以我们只用求2^p即可$ 又$\because10^{lg2}=2$ $\therefore 10^{p\times lg2}=2^{p}$ $\therefore 位数即为p\times lg2+1$ 二，用快速幂的思想： 因为出现了很大的p，而且只要求后500位，所以我们直接高精度快速幂，只管后500位，其他不变。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;cmath&gt;using namespace std;const int maxn=510;int p,a[maxn],c[maxn];void mul1()//a*c&#123; int tmp[maxn],i,j; memset(tmp,0,sizeof(tmp)); for (i=1;i&lt;=500;i++) for (j=1;j&lt;=500;j++) if (i+j-1&lt;=500) &#123; tmp[i+j-1]+=a[i]*c[j]; tmp[i+j]+=tmp[i+j-1]/10; tmp[i+j-1]%=10; &#125; memcpy(c,tmp,sizeof(c));&#125;void mul2()//a*a&#123; int tmp[maxn],i,j; memset(tmp,0,sizeof(tmp)); for (i=1;i&lt;=500;i++) for (j=1;j&lt;=500;j++) if (i+j-1&lt;=500) &#123; tmp[i+j-1]+=a[i]*a[j]; tmp[i+j]+=tmp[i+j-1]/10; tmp[i+j-1]%=10; &#125; memcpy(a,tmp,sizeof(a));&#125;int main()&#123; int i,j; scanf("%d",&amp;p); printf("%d\n",(int)(1.0*p*log10(2))+1); c[1]=1; a[1]=2; for (;p;p&gt;&gt;=1) &#123; if (p&amp;1) mul1(); mul2(); &#125; c[1]--; for (i=1;i&lt;=10;i++) &#123; for (j=500-(i-1)*50;j&gt;=500-i*50+1;j--) printf("%d",c[j]); puts(""); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题目总结</category>
+        <category>洛谷</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>高精度</tag>
+        <tag>快速幂</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【转载】网络流总结]]></title>
     <url>%2F2019%2F05%2F24%2F%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91%E7%BD%91%E7%BB%9C%E6%B5%81%E6%80%BB%E7%BB%93%2F</url>
     <content type="text"></content>
@@ -140,8 +159,8 @@
         <category>BZOJ</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>树形DP</tag>
+        <tag>DP</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -155,8 +174,8 @@
       </categories>
       <tags>
         <tag>后缀数组</tag>
-        <tag>单调栈</tag>
         <tag>LCP</tag>
+        <tag>单调栈</tag>
       </tags>
   </entry>
   <entry>
@@ -169,8 +188,8 @@
       </categories>
       <tags>
         <tag>后缀数组</tag>
-        <tag>单调栈</tag>
         <tag>LCP</tag>
+        <tag>单调栈</tag>
       </tags>
   </entry>
   <entry>
@@ -211,8 +230,8 @@
       </categories>
       <tags>
         <tag>后缀数组</tag>
-        <tag>LCP</tag>
         <tag>SA</tag>
+        <tag>LCP</tag>
         <tag>ST表</tag>
       </tags>
   </entry>
@@ -239,9 +258,9 @@
         <category>BZOJ</category>
       </categories>
       <tags>
+        <tag>字符串</tag>
         <tag>后缀数组</tag>
         <tag>SA</tag>
-        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -254,8 +273,8 @@
       </categories>
       <tags>
         <tag>DP</tag>
-        <tag>矩阵</tag>
         <tag>快速幂</tag>
+        <tag>矩阵</tag>
         <tag>计数DP</tag>
         <tag>数学知识</tag>
       </tags>
