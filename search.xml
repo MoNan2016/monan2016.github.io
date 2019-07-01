@@ -140,8 +140,8 @@
         <category>BZOJ</category>
       </categories>
       <tags>
-        <tag>树形DP</tag>
         <tag>DP</tag>
+        <tag>树形DP</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -155,8 +155,8 @@
       </categories>
       <tags>
         <tag>后缀数组</tag>
-        <tag>LCP</tag>
         <tag>单调栈</tag>
+        <tag>LCP</tag>
       </tags>
   </entry>
   <entry>
@@ -169,8 +169,8 @@
       </categories>
       <tags>
         <tag>后缀数组</tag>
-        <tag>LCP</tag>
         <tag>单调栈</tag>
+        <tag>LCP</tag>
       </tags>
   </entry>
   <entry>
@@ -211,8 +211,8 @@
       </categories>
       <tags>
         <tag>后缀数组</tag>
-        <tag>SA</tag>
         <tag>LCP</tag>
+        <tag>SA</tag>
         <tag>ST表</tag>
       </tags>
   </entry>
@@ -239,9 +239,9 @@
         <category>BZOJ</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>后缀数组</tag>
         <tag>SA</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
