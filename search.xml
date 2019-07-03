@@ -58,8 +58,8 @@
       </categories>
       <tags>
         <tag>数学</tag>
-        <tag>快速幂</tag>
         <tag>高精度</tag>
+        <tag>快速幂</tag>
       </tags>
   </entry>
   <entry>
@@ -273,8 +273,8 @@
       </categories>
       <tags>
         <tag>后缀数组</tag>
-        <tag>LCP</tag>
         <tag>SA</tag>
+        <tag>LCP</tag>
         <tag>ST表</tag>
       </tags>
   </entry>
@@ -301,8 +301,8 @@
         <category>BZOJ</category>
       </categories>
       <tags>
-        <tag>后缀数组</tag>
         <tag>字符串</tag>
+        <tag>后缀数组</tag>
         <tag>SA</tag>
       </tags>
   </entry>
@@ -316,8 +316,8 @@
       </categories>
       <tags>
         <tag>DP</tag>
-        <tag>矩阵</tag>
         <tag>快速幂</tag>
+        <tag>矩阵</tag>
         <tag>计数DP</tag>
         <tag>数学知识</tag>
       </tags>
