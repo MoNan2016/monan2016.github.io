@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【CodeVS1735】方程的解数]]></title>
+    <url>%2F2019%2F07%2F03%2F%E3%80%90CodeVS1735%E3%80%91%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题面不贴了，http://codevs.cn/problem/1735/ 这是meet in the middle的模板题，注意最后合并的时候用two-pointer的方法，可以先用离散化思想将相同的合并掉，用空间换常数。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int maxn=3500000;typedef long long ll;int n,m,a[10],p[10],s1[maxn],s2[maxn],tot1,tot2,ans,sum1,sum2,mid;struct node&#123; int val,cnt;&#125;t1[maxn],t2[maxn];ll qp(int a,int b)&#123; ll res=1; for (;b;b&gt;&gt;=1) &#123; if (b&amp;1) res*=a; a*=a; &#125; return res;&#125;void dfs(int x,ll now,int *s,int &amp;tot)&#123; if (x&gt;mid) &#123; s[++tot]=now; return; &#125; for (int i=1;i&lt;=m;i++) dfs(x+1,now+a[x]*qp(i,p[x]),s,tot);&#125;int main()&#123; int i,j; scanf("%d%d",&amp;n,&amp;m); for (i=1;i&lt;=n;i++) scanf("%d%d",&amp;a[i],&amp;p[i]); mid=n/2; dfs(1,0,s1,tot1); mid=n; dfs(n/2+1,0,s2,tot2); sort(s1+1,s1+tot1+1); sort(s2+1,s2+tot2+1); for (i=1;i&lt;=tot1;i++) &#123; if (t1[sum1].val==s1[i]) t1[sum1].cnt++; else t1[++sum1]=(node)&#123;s1[i],1&#125;; &#125; for (i=1;i&lt;=tot2;i++) &#123; if (t2[sum2].val==s2[i]) t2[sum2].cnt++; else t2[++sum2]=(node)&#123;s2[i],1&#125;; &#125; j=sum2;tot1=tot2=0; for (i=1;i&lt;=sum1;i++) &#123; while (j&gt;1&amp;&amp;t2[j].val+t1[i].val&gt;0) j--; if (t1[i].val+t2[j].val==0) ans+=t1[i].cnt*t2[j].cnt; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>题目总结</category>
+        <category>CodeVS</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+        <tag>meet in the middle</tag>
+        <tag>two-pointer</tag>
+        <tag>离散化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[【POJ3134】Power Calculus]]></title>
+    <url>%2F2019%2F07%2F03%2F%E3%80%90POJ3134%E3%80%91Power-Calculus%2F</url>
+    <content type="text"><![CDATA[题面不贴了，http://poj.org/problem?id=3134 这道题要加几个剪枝，然后暴力卡常，就可以用迭代加深过了这道题了。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263#include&lt;cstdio&gt;#include&lt;cstring&gt;using namespace std;const int maxn=1010;int n,a[30],dep;bool b[maxn];#define max(a,b) (a&gt;b?a:b)bool iddfs(int x,int mv)&#123;/* if (x&gt;dep) return 0;*/ if (x==dep) return a[x]==n; if (a[x]&gt;mv) mv=a[x]; if (a[x]&gt;=n||1ll*mv*(1&lt;&lt;dep-x)&lt;n) return 0;/* if (1ll*mv*(1&lt;&lt;dep-x)&lt;n) return 0;*/ register int i,t; for (i=1;i&lt;=x;i++) if (!b[t=a[x]+a[i]]) &#123; b[t]=1; a[x+1]=t; if (iddfs(x+1,mv)) return 1; b[t]=0;// a[tot+1]=0; &#125; for (i=1;i&lt;=x;i++) if ((t=a[x]-a[i])&gt;=1&amp;&amp;!b[t]) &#123; b[t]=1; a[x+1]=t; if (iddfs(x+1,mv)) return 1; b[t]=0;// a[tot+1]=0; &#125;&#125;int main()&#123; int i; while (~scanf("%d",&amp;n)&amp;&amp;n) &#123;// memset(a,0,sizeof(a)); memset(b,0,sizeof(b)); a[1]=1; dep=1; b[1]=1; for (i=1;;i++) if (!iddfs(1,1)) dep++; else break; printf("%d\n",dep-1); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>题目总结</category>
+        <category>POJ</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+        <tag>剪枝</tag>
+        <tag>卡常</tag>
+        <tag>迭代加深</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【HDU3348】coins]]></title>
     <url>%2F2019%2F07%2F02%2F%E3%80%90HDU3348%E3%80%91coins%2F</url>
     <content type="text"><![CDATA[题面不贴了，http://acm.hdu.edu.cn/showproblem.php?pid=3348 取最小值就是每次从大往小取，但是最大值就不一定。因为假如从小往大取的话会出现凑不出p的情况。所以这里我们反过来思考，让最大值取出p，即令最小值取出sum-p，对剩下的sum-p进行取最小值的操作即可，注意最后用总硬币数-第二次取的数量即为答案。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include&lt;cstdio&gt;using namespace std;const int a[6]=&#123;0,1,5,10,50,100&#125;;int t,n,ansmin,ansmax,b[6],tot,cnt;int main()&#123; int i,tmp; scanf("%d",&amp;t); while (t--) &#123; scanf("%d",&amp;n); ansmin=ansmax=tot=cnt=0; for (i=1;i&lt;=5;i++) scanf("%d",&amp;b[i]),tot+=b[i]*a[i],cnt+=b[i]; tmp=n; for (i=5;i&gt;=1;i--) &#123; if (tmp/a[i]&gt;=b[i]) &#123; tmp-=a[i]*b[i]; ansmin+=b[i]; &#125; else &#123; ansmin+=tmp/a[i]; tmp%=a[i]; &#125; &#125; if (tmp&gt;0) &#123; puts("-1 -1"); continue; &#125; tmp=tot-n; for (i=5;i&gt;=1;i--) &#123; if (tmp/a[i]&gt;=b[i]) &#123; tmp-=a[i]*b[i]; ansmax+=b[i]; &#125; else &#123; ansmax+=tmp/a[i]; tmp%=a[i]; &#125; &#125; printf("%d %d\n",ansmin,cnt-ansmax); &#125; return 0;&#125;]]></content>
@@ -28,8 +58,8 @@
       </categories>
       <tags>
         <tag>数学</tag>
-        <tag>高精度</tag>
         <tag>快速幂</tag>
+        <tag>高精度</tag>
       </tags>
   </entry>
   <entry>
@@ -243,8 +273,8 @@
       </categories>
       <tags>
         <tag>后缀数组</tag>
-        <tag>SA</tag>
         <tag>LCP</tag>
+        <tag>SA</tag>
         <tag>ST表</tag>
       </tags>
   </entry>
@@ -271,8 +301,8 @@
         <category>BZOJ</category>
       </categories>
       <tags>
-        <tag>字符串</tag>
         <tag>后缀数组</tag>
+        <tag>字符串</tag>
         <tag>SA</tag>
       </tags>
   </entry>
@@ -286,8 +316,8 @@
       </categories>
       <tags>
         <tag>DP</tag>
-        <tag>快速幂</tag>
         <tag>矩阵</tag>
+        <tag>快速幂</tag>
         <tag>计数DP</tag>
         <tag>数学知识</tag>
       </tags>
