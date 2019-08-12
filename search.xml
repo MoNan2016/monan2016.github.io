@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【BZOJ3156】防御准备]]></title>
+    <url>%2F2019%2F08%2F12%2F%E3%80%90BZOJ3156%E3%80%91%E9%98%B2%E5%BE%A1%E5%87%86%E5%A4%87%2F</url>
+    <content type="text"><![CDATA[这道题是斜率优DP的模板题，非常基础，但是我们内部测试的时候我推的式子把一个$+$写成了$-$，然而暴力也写错了，所以没有分。 方程： $f_i=\min{f_j+\displaystyle\sum_{k=j+1}^{i-1}{i-k}}+a_i$ 其中$f_i$表示到第i个地方我们建塔的最小花费，那么枚举的j就是上一个建塔的地方，这里认为$j+1..i-1$的地方都不建造塔，都放木偶，所以木偶的花费就在dp式子中间的那个求和符号那里计算，最后加上当前建造塔的花费。 容易变形得到： $f_i=\min{f_j+\frac{(i-j)\times(i-j-1)}{2}}+a_i$ 注意这里拆括号时加减号不要像我那样写错。 拆括号： $f_i=f_j+\frac{i^2-i}{2}+\frac{j^2+j}{2}-i\times j+a_i$ 继续变形，把j的放一边，i的放一边。 $f_j+\frac{j^2+j}{2}=i\times j+f_i-\frac{i^2-i}{2}+a_i$ 此时，发现这是可以斜率优化的式子。感性理解为一个平面直角坐标系中的一个凸包即可，令$y=f_j+\frac{j^2+j}{2},k=i,x=j,b=f_i-\frac{i^2-i}{2}+a_i$即可。 这是最终的代码： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&lt;cstdio&gt;using namespace std;const int maxn=1000010;typedef long long ll;int n,l,r,q[maxn],a[maxn];ll f[maxn];ll gety(int j)&#123; return 1ll*(f[j]+(1ll*j*(j+1)&gt;&gt;1));&#125;ll getans(int i,int j)&#123; return 1ll*(f[j]+(1ll*(i-j)*(i-j-1)&gt;&gt;1)+a[i]);&#125;int read()&#123; int x=0,f=1; char c=getchar(); while (c&lt;48||c&gt;57) f=c=='-'?-1:1,c=getchar(); while (c&gt;=48&amp;&amp;c&lt;=57) x=(x&lt;&lt;1)+(x&lt;&lt;3)+(c^48),c=getchar(); return x*f;&#125;int main()&#123; int i; n=read(); for (i=1;i&lt;=n;i++) a[i]=read(); q[l=r=1]=0; for (i=1;i&lt;=n;i++) &#123; while (l&lt;r&amp;&amp;(gety(q[l+1])-gety(q[l]))&lt;=1ll*i*(q[l+1]-q[l])) l++; f[i]=getans(i,q[l]); while (l&lt;r&amp;&amp;1ll*(gety(q[r])-gety(q[r-1]))*(i-q[r])&gt;=1ll*(gety(i)-gety(q[r]))*(q[r]-q[r-1])) r--; q[++r]=i; &#125; printf("%lld\n",f[n]); return 0;&#125; 这是对拍用的暴力： 123456789101112131415161718192021222324252627282930313233#include&lt;cstdio&gt;using namespace std;const int maxn=1000010;typedef long long ll;int n,a[maxn];ll f[maxn];#define min(a,b) (a&lt;b?a:b)int read()&#123; int x=0,f=1; char c=getchar(); while (c&lt;48||c&gt;57) f=c=='-'?-1:1,c=getchar(); while (c&gt;=48&amp;&amp;c&lt;=57) x=(x&lt;&lt;1)+(x&lt;&lt;3)+(c^48),c=getchar(); return x*f;&#125;int main()&#123; int i,j; n=read(); for (i=1;i&lt;=n;i++) a[i]=read(),f[i]=1000000000000000000ll; for (i=1;i&lt;=n;i++) for (j=0;j&lt;i;j++) f[i]=min(f[i],f[j]+1ll*(i-j)*(i-j-1)/2+a[i]); printf("%lld\n",f[n]); return 0;&#125;]]></content>
+      <categories>
+        <category>题目总结</category>
+        <category>BZOJ</category>
+      </categories>
+      <tags>
+        <tag>斜率优化</tag>
+        <tag>DP</tag>
+        <tag>单调队列</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【CodeVS1735】方程的解数]]></title>
     <url>%2F2019%2F07%2F03%2F%E3%80%90CodeVS1735%E3%80%91%E6%96%B9%E7%A8%8B%E7%9A%84%E8%A7%A3%E6%95%B0%2F</url>
     <content type="text"><![CDATA[题面不贴了，http://codevs.cn/problem/1735/ 这是meet in the middle的模板题，注意最后合并的时候用two-pointer的方法，可以先用离散化思想将相同的合并掉，用空间换常数。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int maxn=3500000;typedef long long ll;int n,m,a[10],p[10],s1[maxn],s2[maxn],tot1,tot2,ans,sum1,sum2,mid;struct node&#123; int val,cnt;&#125;t1[maxn],t2[maxn];ll qp(int a,int b)&#123; ll res=1; for (;b;b&gt;&gt;=1) &#123; if (b&amp;1) res*=a; a*=a; &#125; return res;&#125;void dfs(int x,ll now,int *s,int &amp;tot)&#123; if (x&gt;mid) &#123; s[++tot]=now; return; &#125; for (int i=1;i&lt;=m;i++) dfs(x+1,now+a[x]*qp(i,p[x]),s,tot);&#125;int main()&#123; int i,j; scanf("%d%d",&amp;n,&amp;m); for (i=1;i&lt;=n;i++) scanf("%d%d",&amp;a[i],&amp;p[i]); mid=n/2; dfs(1,0,s1,tot1); mid=n; dfs(n/2+1,0,s2,tot2); sort(s1+1,s1+tot1+1); sort(s2+1,s2+tot2+1); for (i=1;i&lt;=tot1;i++) &#123; if (t1[sum1].val==s1[i]) t1[sum1].cnt++; else t1[++sum1]=(node)&#123;s1[i],1&#125;; &#125; for (i=1;i&lt;=tot2;i++) &#123; if (t2[sum2].val==s2[i]) t2[sum2].cnt++; else t2[++sum2]=(node)&#123;s2[i],1&#125;; &#125; j=sum2;tot1=tot2=0; for (i=1;i&lt;=sum1;i++) &#123; while (j&gt;1&amp;&amp;t2[j].val+t1[i].val&gt;0) j--; if (t1[i].val+t2[j].val==0) ans+=t1[i].cnt*t2[j].cnt; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
@@ -202,8 +216,8 @@
         <category>BZOJ</category>
       </categories>
       <tags>
-        <tag>树形DP</tag>
         <tag>DP</tag>
+        <tag>树形DP</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
